@@ -43,8 +43,6 @@ You can configure the line-counter via the `config.json`. Following are the poss
 | Name   | Default Value | Meaning                             |
 |--------|---------------|-------------------------------------|
 | ignore | `array`       | To expand the `.gitignore`'s rules. |
-|        |               |                                     |
-|        |               |                                     |
 
 ## Dependencies
 
