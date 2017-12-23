@@ -4,6 +4,46 @@ const path = require('path')
 const ignore = require('ignore')
 const printf = require('printf')
 
+const mainDirPath = path.parse(process.argv[1]).dir
+
+function loadConfig () {
+  let config = {}
+  let configPath = path.join(mainDirPath, './config.json')
+  if (!fs.existsSync(configPath)) {
+    config = {
+      'ignore': [
+        'node_modules',
+        '.git',
+        '.gitignore',
+        '.gitattributes',
+        'LICENSE',
+        'package.json',
+        'package-lock.json',
+        '.vscode',
+        '.babelrc',
+        '*.png',
+        '*.mp3',
+        '*.jpg',
+        '*.gif',
+        '*.svg',
+        '*.md',
+        '*.docx',
+        '*.doc',
+        '*.xlsx',
+        '*.xls',
+        '*.pdf',
+        'dist/'
+      ]
+    }
+  } else {
+    config = require(configPath)
+  }
+
+  return config
+}
+
+const config = loadConfig()
+
 function log (...msg) {
   console.log(printf(...msg))
 }
@@ -98,30 +138,8 @@ function main () {
       process.abort()
     }
 
-    // .gitignore
-    let ignoreRule = ignore().add([
-      'node_modules',
-      '.git',
-      '.gitignore',
-      '.gitattributes',
-      'LICENSE',
-      'package.json',
-      'package-lock.json',
-      '.vscode',
-      '.babelrc',
-      '*.png',
-      '*.mp3',
-      '*.jpg',
-      '*.gif',
-      '*.svg',
-      '*.md',
-      '*.docx',
-      '*.doc',
-      '*.xlsx',
-      '*.xls',
-      '*.pdf',
-      'dist/'
-    ])
+    // Deal with .gitignore
+    let ignoreRule = ignore().add(config.ignore)
     let gitignorePath = path.join(dirPath, '.gitignore')
     let haveGitignore = false
     if (fs.existsSync(gitignorePath)) {
@@ -129,7 +147,7 @@ function main () {
       ignoreRule.add(fs.readFileSync(gitignorePath).toString())
     }
 
-    // Starting
+    // Starting Computing
     log('%-4s %-51s (%-5s, %-8s)', 'Type', 'Path or Name', 'Lines', 'Char.')
     let result = countLinesDir(dirPath, ignoreRule)
 
@@ -191,7 +209,7 @@ function main () {
     log('%-18s \x1b[36m%s\x1b[0m', 'Total Folders', totalFolders)
     log('%-18s \x1b[36m%s\x1b[0m', 'Total Files', totalFiles)
     log('%-18s \x1b[36m%s\x1b[0m', 'Total Characters', totalCharacters)
-    log('%-18s %-9s | %-6s | %-5s | %-4s | %-8s', 'File Type Ranking', 'Ext. Name', 'Per.', 'Lines', 'Files', 'Char.')
+    log('%-18s %-9s | %-6s | %-5s | %-4s | %-8s', 'File Ext. Ranking', 'Ext. Name', 'Per.', 'Lines', 'Files', 'Char.')
     for (let ext of extStateArray) {
       log('%-18s \x1b[33m%-9s\x1b[0m   %5.1f%%   %5d   %5d   %8s', '', ext.name, (ext.lines / totalLines * 100), ext.lines, ext.filescount, ext.characters)
     }

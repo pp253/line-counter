@@ -1,0 +1,25 @@
+{
+  "ignore": [
+    "node_modules",
+    ".git",
+    ".gitignore",
+    ".gitattributes",
+    "LICENSE",
+    "package.json",
+    "package-lock.json",
+    ".vscode",
+    ".babelrc",
+    "*.png",
+    "*.mp3",
+    "*.jpg",
+    "*.gif",
+    "*.svg",
+    "*.md",
+    "*.docx",
+    "*.doc",
+    "*.xlsx",
+    "*.xls",
+    "*.pdf",
+    "dist/"
+  ]
+}
