@@ -1,0 +1,16 @@
+{
+  "name": "line-counter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "pp253",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ignore": "^3.3.7",
+    "printf": "^0.2.5"
+  }
+}
