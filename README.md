@@ -8,7 +8,7 @@ A CLI tool based on Node.js to **Count the line of code**, just that simple.
 
 - **Colorful**: Easy to read.
 - **Support `.gitignore`**: Ignore something like `node_modules` automatically.
-- **File Extension Ranking**: Tell you what kind of languege you used the most.  
+- **File Extension Ranking**: Show you what kind of languege you used the most.  
 
 ## How to use?
 
