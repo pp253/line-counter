@@ -1,6 +1,6 @@
 # line-counter
 
-Count the line of code, just that simple.
+A CLI tool based on Node.js to **Count the line of code**, just that simple.
 
 ![Screen shot of line-counter](./doc/img/screenshot.png)
 
