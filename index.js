@@ -8,11 +8,26 @@ const mainDirPath = path.parse(process.argv[1]).dir
 
 function loadConfig () {
   let config = {}
-  let configPath = path.join(mainDirPath, './config.json')
-  if (!fs.existsSync(configPath)) {
+  let configLoaded = false
+
+  let configPossiblePath = [
+    path.join(process.argv[1], './config.json'),
+    path.join(mainDirPath, './config.json')
+  ]
+
+  for (let configPath of configPossiblePath) {
+    if (fs.existsSync(configPath)) {
+      config = require(configPath)
+      configLoaded = true
+      break
+    }
+  }
+
+  if (!configLoaded) {
     config = {
       'ignore': [
         'node_modules',
+        'dist/',
         '.git',
         '.gitignore',
         '.gitattributes',
@@ -32,11 +47,18 @@ function loadConfig () {
         '*.xlsx',
         '*.xls',
         '*.pdf',
-        'dist/'
+        '*.rar',
+        '*.zip',
+        '*.ico',
+        '*.ai',
+        '*.psd',
+        '*.ttf',
+        '*.eot',
+        '*.bat',
+        '*.map',
+        '*.woff'
       ]
     }
-  } else {
-    config = require(configPath)
   }
 
   return config

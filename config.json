@@ -1,6 +1,7 @@
 {
   "ignore": [
     "node_modules",
+    "dist/",
     ".git",
     ".gitignore",
     ".gitattributes",
@@ -20,6 +21,15 @@
     "*.xlsx",
     "*.xls",
     "*.pdf",
-    "dist/"
+    "*.rar",
+    "*.zip",
+    "*.ico",
+    "*.ai",
+    "*.psd",
+    "*.ttf",
+    "*.eot",
+    "*.bat",
+    "*.map",
+    "*.woff"
   ]
 }
